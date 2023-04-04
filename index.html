@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Player</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+   <style>
+   * {
+      box-sizing: border-box;
+ }
+  div.ia21-player {
+     border: 1 px  solid black;
+ }
+  div.ia21-player div.controllers{
+     display: flex;
+     border-top: 1 px solid black;
+     column-gap: 10px;
+ }
+   div.ia21-player div.controllers button.play-pause  {
+     background-color: transparent;
+     border: 0 none;
+     border-right: 1 px solid black;
+     cursor: pointer;
+}
+  div.ia21-player div.controllers div.drag-bar{
+     flex-grow: 1;
+     position: relative;
+
+  }
+  div.ia21-player div.controllers div.drag-bar:before{
+     content: " ";
+     position: absolute;
+     border-top: 1px solid black;
+     width: 100%;
+     top: calc(50% - .5px)
+
+  }
+
+  div.ia21-player div.controllers div-drag-bar div.draggable{
+     background-color: black;
+     width: .5rem;
+     height: .5rem;
+     border-radius: 50%;
+     cursor:pointer;
+     position: absolute;
+     top: calc(50% - .25rem);
+  }
+   </style>
+</head>
+<body>
+  <div class="ia21-player">
+       <video></video>
+     <div class="controllers">
+        <button class="play-pause"></button>  
+           ▶ 
+      <div class="drag-bar timeline">
+         <div class="draggable"></div>
+     </div>
+        <div class="timer">
+            00:00
+     </div>
+       <div class="drag-bar volume">
+         <div class="draggable"></div>
+        </div>
+     </div> 
+  </div>
+</body>
+</html>
