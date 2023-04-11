@@ -11,8 +11,9 @@
         div.ia21-player {
             display: flex;
             flex-direction: column;
-            border: 1px solid black;
-            width: 200px;
+            border: 5px solid royalblue;
+            width: 300px;
+            border-radius: 2px;
         }
         
         div.ia21-player video {
@@ -21,14 +22,14 @@
         
         div.ia21-player div.controllers { 
             display: flex;
-            border-top: 1px solid black;
+            border-top: 2px solid royalblue;
             column-gap: 10px;
         }
         
         div.ia21-player div.controllers button.play-pause {
             background-color: transparent;
             border: 0 none;
-            border-right: 1px solid black;
+            border-right: 2px solid royalblue;
             cursor: pointer;
         }
         
@@ -41,13 +42,13 @@
             content: " ";
             position: absolute;
             top: calc(50% - .5px);
-            border-top: 1px solid black;
+            border-top: 2px solid royalblue;
             width: 100%;
         }
         
         div.ia21-player div.controllers div.dragbar div.draggable {
             --percent: 0%;
-            background-color: black;
+            background-color: red;
             width: .5rem;
             height: .5rem;
             border-radius: 50%;
@@ -62,8 +63,7 @@
     
     <div class="ia21-player">
         <video>
-            <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
-            <source src="https://www.w3schools.com/html/movie.ogg" type="video/ogg">
+            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
         </video>
         <div class="controllers">
             <button class="play-pause" data-deleteme="⏸">
@@ -90,13 +90,20 @@
             const timeline = container.querySelector(".dragbar.timeline")
             const timelineDrag = timeline.querySelector(".draggable")
             const timer = container.querySelector(".timer")
-            btPlayPause.addEventListener("click", () => video.play())
 
+            btPlayPause.addEventListener("click", () => video.play())
+            video.currentTime = 55
             video.addEventListener("timeupdate", () => {
-                const percent = (video.currentTime / video.duration) * 100
+               /*  const percent = (video.currentTime / video.duration) * 100
                 timelineDrag.style.setProperty("--percent", `${percent}%`) 
-                timer.innerText = Math.floor(video.currentTime)
+                timer.innerText = Math.floor(video.currentTime) 
+                const minutos = Math.floor(video.currentTime / video.duration) * 100
+                const minutos */
+
+                
+
             })
+            
         })
     </script>
 </body>
