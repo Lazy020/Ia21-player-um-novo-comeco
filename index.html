@@ -31,6 +31,9 @@
             border: 0 none;
             border-right: 2px solid royalblue;
             cursor: pointer;
+            width: 40px;
+            height: 20px;
+            overflow: hidden;
         }
         
         div.ia21-player div.controllers div.dragbar {
@@ -66,7 +69,7 @@
             <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
         </video>
         <div class="controllers">
-            <button class="play-pause" data-deleteme="⏸">
+            <button class="play-pause" data-deleteme="❚ ❚">
                 ▶ 
             </button>
             <div class="dragbar timeline">
@@ -92,10 +95,17 @@
             const timer = container.querySelector(".timer")
             
             btPlayPause.addEventListener("click", () => {
+                if (video.paused) {
                 video.play()
+                btPlayPause.innerHTML = '❚       ❚'
+                return
+                }
+
+                video.pause()
+                btPlayPause.innerText = '▶'
             })
             
-            video.currentTime = 59
+            // video.currentTime = 59
             
             video.addEventListener("timeupdate", () => {
                const percent = (video.currentTime / video.duration) * 100
