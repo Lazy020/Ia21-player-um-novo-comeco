@@ -6,19 +6,29 @@
     <style>
         * {
             box-sizing: border-box;
+           
         }
-        
+
+        body{
+            background: wheat;
+            margin: 100px;
+            padding: 40px;
+        }
+
         div.ia21-player {
             display: flex;
             flex-direction: column;
             border: 5px solid royalblue;
             width: 300px;
             border-radius: 2px;
+            background: white;
         }
         
         div.ia21-player video {
             width: 100%;
+            
         }
+        
         
         div.ia21-player div.controllers { 
             display: flex;
@@ -83,10 +93,10 @@
             </div>
         </div>
     </div>
-
+    
     <script>
         const containers = document.querySelectorAll("div.ia21-player")
-       
+        
         containers.forEach(container => { 
             const btPlayPause = container.querySelector("button.play-pause")
             const video = container.querySelector("video")
@@ -96,19 +106,19 @@
             
             btPlayPause.addEventListener("click", () => {
                 if (video.paused) {
-                video.play()
-                btPlayPause.innerHTML = '❚       ❚'
-                return
+                    video.play()
+                    btPlayPause.innerHTML = '❚ ❚'
+                    return
                 }
-
+                
                 video.pause()
                 btPlayPause.innerText = '▶'
             })
             
-            // video.currentTime = 59
+            //video.currentTime = 59
             
             video.addEventListener("timeupdate", () => {
-               const percent = (video.currentTime / video.duration) * 100
+                const percent = (video.currentTime / video.duration) * 100
                 timelineDrag.style.setProperty("--percent", `${percent}%`) 
                 
                 var segundos = Math.floor(video.currentTime % 60)
@@ -118,10 +128,10 @@
                 
                 // const minutos = Math.floor(video.currentTime / video.duration) * 100
                 // const minutos
-
-           
                 
-
+                
+                
+                
             })
         })
         
