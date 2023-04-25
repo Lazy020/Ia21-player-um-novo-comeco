@@ -10,8 +10,8 @@
         }
         
         body{
-            background: wheat;
-            border: 10px solid yellow;
+            background: #E3B7FF;
+           /* border: 10px solid yellow; */
             margin: 0 auto;
             align-items: content;
             display: flex;
@@ -22,7 +22,7 @@
         div.ia21-player {
             display: flex;
             flex-direction: column;
-            border: 5px solid royalblue;
+            border: 10px solid #6A00FF;
             width: 300px;
             border-radius: 2px;
             background: white;
@@ -37,14 +37,15 @@
         
         div.ia21-player div.controllers { 
             display: flex;
-            border-top: 2px solid royalblue;
+            border-top: 2px solid #6A00FF;
             column-gap: 10px;
         }
         
         div.ia21-player div.controllers button.play-pause {
             background-color: transparent;
+            color:red;
             border: 0 none;
-            border-right: 2px solid royalblue;
+            border-right: 2px solid #6A00FF;
             cursor: pointer;
             width: 40px;
             height: 20px;
@@ -60,7 +61,7 @@
             content: " ";
             position: absolute;
             top: calc(50% - .5px);
-            border-top: 2px solid royalblue;
+            border-top: 2px solid #6A00FF;
             width: 100%;
         }
         
@@ -73,52 +74,17 @@
             cursor: pointer;
             position: absolute;
             top: calc(50% - .25rem);
-            left: calc(var(--percent) - .25rem)
+            left: calc(var(--percent) - .25rem);
+            pointer-events: none;
         }
+        div.ia21-player .controllers div.timer {
+            color: red;
+        }
+
     </style>
 </head>
 <body>
-    
-    <div class="ia21-player">
-        <video>
-            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-        </video>
-        <div class="controllers">
-            <button class="play-pause" data-deleteme="❚ ❚">
-                ▶ 
-            </button>
-            <div class="dragbar timeline">
-                <div class="draggable"></div>
-            </div>
-            <div class="timer">
-                00:00
-            </div>
-            <div class="dragbar volume">
-                <div class="draggable"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="ia21-player">
-        <video>
-            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-        </video>
-        <div class="controllers">
-            <button class="play-pause" data-deleteme="❚ ❚">
-                ▶ 
-            </button>
-            <div class="dragbar timeline">
-                <div class="draggable"></div>
-            </div>
-            <div class="timer">
-                00:00
-            </div>
-            <div class="dragbar volume">
-                <div class="draggable"></div>
-            </div>
-        </div>
-    </div>
-
+  
     <div class="ia21-player">
         <video>
             <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
@@ -189,7 +155,7 @@
                 dragbar.addEventListener("click", ev => {
                     const width = Math.floor(dragbar.getBoundingClientRect().width)
                     const index = (ev.offsetX / width)
-                    const percent =  index * 100
+                    const percent =  index * 100 
                     
                     dragabble.style.setProperty("--percent", `${percent}%`)
                     
