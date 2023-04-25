@@ -74,7 +74,7 @@
             cursor: pointer;
             position: absolute;
             top: calc(50% - .25rem);
-            left: calc(var(--percent) - .25rem);
+            left: calc(var(--percent) - var(--offset));
             pointer-events: none;
         }
         div.ia21-player .controllers div.timer {
@@ -130,7 +130,10 @@
             
             video.addEventListener("timeupdate", () => {
                 const percent = (video.currentTime / video.duration) * 100
-                timelineDrag.style.setProperty("--percent", `${percent}%`) 
+                const offset = (percent / 100) / 2
+                timelineDrag.style.setProperty("--percent", `${percent}%`)
+                timelineDrag.style.setProperty("--offset", `${offset}rem`)
+
                 
                 var segundos = Math.floor(video.currentTime % 60)
                 var minutos = Math.floor(video.currentTime / 60)
@@ -150,6 +153,7 @@
                 
                 if (dragbar.classList.contains("volume")) {
                     dragabble.style.setProperty("--percent", `100%`)
+                    dragabble.style.setProperty("--offset", ".5rem")
                 }
 
                 dragbar.addEventListener("click", ev => {
