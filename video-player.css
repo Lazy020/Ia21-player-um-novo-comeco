@@ -1,0 +1,89 @@
+* {
+    box-sizing: border-box;
+    
+}
+
+body{
+    background: #F0E68C;
+   /* border: 10px solid yellow; */
+    margin: 0 auto;
+    align-items: content;
+    display: flex;
+    justify-content: center;
+    
+}
+
+div.ia21-player {
+    display: flex;
+    flex-direction: column;
+    border: 20px solid #FF7F50;
+    border-radius: 8px;
+    background: white;
+    width: 70rem;
+    font-size: 3rem;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+div.ia21-player video {
+    width: 100%;
+    
+}
+
+
+div.ia21-player div.controllers { 
+    display: flex;
+    border-top: 15px solid #FF7F50;
+    column-gap: 1em;
+    padding-right: 1em;
+}
+
+div.ia21-player div.controllers button.play-pause {
+    background-color: transparent;
+    color:#9ACD32;
+    border: 0 none;
+    border-right: 15px solid #FF7F50;
+    cursor: pointer;
+    font-size: 1em;
+    padding: .5em;
+    line-height: 1em;
+    width: 3em;
+}
+
+div.ia21-player div.controllers div.dragbar {
+    flex-grow: 1;
+    position: relative;
+    cursor: pointer;
+}
+
+div.ia21-player div.controllers div.dragbar:before {
+    content: " ";
+    position: absolute;
+    top: calc(50% - .5px);
+    border-top: 3px solid #9ACD32;
+    width: 100%;
+}
+
+div.ia21-player div.controllers div.dragbar div.draggable {
+    /* --percent: 0%; */
+    background-color: #FF4500;
+    width: .5em;
+    height: .5em;
+    border-radius: 50%;
+    position: absolute;
+    top: calc(50% - .75rem);
+    left: calc(var(--percent) - var(--offset));
+    pointer-events: none;
+}
+
+div.ia21-player div.controllers div.dragbar.timeline {
+    width: 30%;
+}
+
+
+div.ia21-player .controllers div.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FF4500;
+}

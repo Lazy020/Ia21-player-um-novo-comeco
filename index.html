@@ -3,95 +3,19 @@
 <head>
     <meta charset="utf8">
     <title>-Player-</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            
-        }
-        
-        body{
-            background: #E3B7FF;
-           /* border: 10px solid yellow; */
-            margin: 0 auto;
-            align-items: content;
-            display: flex;
-            justify-content: center;
-            
-        }
-        
-        div.ia21-player {
-            display: flex;
-            flex-direction: column;
-            border: 10px solid #6A00FF;
-            width: 300px;
-            border-radius: 2px;
-            background: white;
-
-        }
-        
-        div.ia21-player video {
-            width: 100%;
-            
-        }
-        
-        
-        div.ia21-player div.controllers { 
-            display: flex;
-            border-top: 2px solid #6A00FF;
-            column-gap: 10px;
-        }
-        
-        div.ia21-player div.controllers button.play-pause {
-            background-color: transparent;
-            color:red;
-            border: 0 none;
-            border-right: 2px solid #6A00FF;
-            cursor: pointer;
-            width: 40px;
-            height: 20px;
-            overflow: hidden;
-        }
-        
-        div.ia21-player div.controllers div.dragbar {
-            flex-grow: 1;
-            position: relative;
-        }
-        
-        div.ia21-player div.controllers div.dragbar:before {
-            content: " ";
-            position: absolute;
-            top: calc(50% - .5px);
-            border-top: 2px solid #6A00FF;
-            width: 100%;
-        }
-        
-        div.ia21-player div.controllers div.dragbar div.draggable {
-            /* --percent: 0%; */
-            background-color: red;
-            width: .5rem;
-            height: .5rem;
-            border-radius: 50%;
-            cursor: pointer;
-            position: absolute;
-            top: calc(50% - .25rem);
-            left: calc(var(--percent) - var(--offset));
-            pointer-events: none;
-        }
-        div.ia21-player .controllers div.timer {
-            color: red;
-        }
-
-    </style>
+    <link rel="stylesheet" href="video-player.css">
+    <script defer async src="video-player.js"></script>
+    
 </head>
 <body>
-  
+   
     <div class="ia21-player">
         <video>
             <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
         </video>
         <div class="controllers">
-            <button class="play-pause" data-deleteme="❚ ❚">
-                ▶ 
+            <button class="play-pause" data-pause-icon="❚❚" data-play-icon="😺">
+                😺
             </button>
             <div class="dragbar timeline">
                 <div class="draggable"></div>
@@ -104,79 +28,5 @@
             </div>
         </div>
     </div>
-    
-    <script>
-        const containers = document.querySelectorAll("div.ia21-player")
-        
-        containers.forEach(container => { 
-            const btPlayPause = container.querySelector("button.play-pause")
-            const video = container.querySelector("video")
-            const timeline = container.querySelector(".dragbar.timeline")
-            const timelineDrag = timeline.querySelector(".draggable")
-            const timer = container.querySelector(".timer")
-            
-            btPlayPause.addEventListener("click", () => {
-                if (video.paused) {
-                    video.play()
-                    btPlayPause.innerHTML = '❚ ❚'
-                    return
-                }
-                
-                video.pause()
-                btPlayPause.innerText = '▶'
-            })
-            
-            //video.currentTime = 59
-            
-            video.addEventListener("timeupdate", () => {
-                const percent = (video.currentTime / video.duration) * 100
-                const offset = (percent / 100) / 2
-                timelineDrag.style.setProperty("--percent", `${percent}%`)
-                timelineDrag.style.setProperty("--offset", `${offset}rem`)
-
-                
-                var segundos = Math.floor(video.currentTime % 60)
-                var minutos = Math.floor(video.currentTime / 60)
-                
-                timer.innerText = `${minutos < 10 ? 0 : ''}${minutos % 60}:${segundos < 10 ? 0 : ''}${segundos}`
-                
-                // const minutos = Math.floor(video.currentTime / video.duration) * 100
-                // const minutos
-            })
-            
-            // --------------------------------------------------------
-            
-            const dragbars = container.querySelectorAll(".dragbar")
-            
-            dragbars.forEach(dragbar => {
-                const dragabble = dragbar.querySelector(".draggable")
-                
-                if (dragbar.classList.contains("volume")) {
-                    dragabble.style.setProperty("--percent", `100%`)
-                    dragabble.style.setProperty("--offset", ".5rem")
-                }
-
-                dragbar.addEventListener("click", ev => {
-                    const width = Math.floor(dragbar.getBoundingClientRect().width)
-                    const index = (ev.offsetX / width)
-                    const percent =  index * 100 
-                    
-                    dragabble.style.setProperty("--percent", `${percent}%`)
-                    
-                    if (dragbar.classList.contains("timeline")){
-                        video.currentTime = video.duration * index
-                        return
-                    }
-                    
-                    if (dragbar.classList.contains("volume")){
-                        video.volume = index
-                        return
-                    }
-                    
-                })    
-            })
-        })
-        
-    </script>
 </body>
 </html>
