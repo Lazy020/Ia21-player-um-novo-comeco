@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,500;1,300&display=swap');
+
+
 * {
     box-sizing: border-box;
     
 }
 
 body{
-    background: #F0E68C;
+    background: #000000ce;
    /* border: 10px solid yellow; */
     margin: 0 auto;
     align-items: content;
@@ -86,4 +89,8 @@ div.ia21-player .controllers div.timer {
     justify-content: center;
     align-items: center;
     color: #FF4500;
+}
+
+.hide {
+  display: none;
 }

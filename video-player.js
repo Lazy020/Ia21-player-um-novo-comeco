@@ -1,14 +1,20 @@
 const containers = document.querySelectorAll("div.ia21-player")
         
-containers.forEach(container => { 
+containers.forEach(async container => { 
     const btPlayPause = container.querySelector("button.play-pause")
     const video = container.querySelector("video")
     const timeline = container.querySelector(".dragbar.timeline")
     const timelineDrag = timeline.querySelector(".draggable")
     const timer = container.querySelector(".timer")
-
-    let volumeAnterior = 0
+    const bt = document.querySelector(".button")
+    const playlist = container.querySelector(".playlist")
     
+
+    bt.addEventListener("click", () => {
+        playlist.classList.toggle("hide")
+       })
+
+
     btPlayPause.addEventListener("click", () => {
         if (video.paused) {
             video.play()
@@ -97,4 +103,7 @@ containers.forEach(container => {
         btPlayPause.click()
      }
     })
+
+    
+
 })
